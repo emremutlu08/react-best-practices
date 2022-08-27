@@ -1,0 +1,167 @@
+{
+  // Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and description.
+  "useState": {
+    "prefix": "useState",
+    "body": [
+      "const[$TM_SELECTED_TEXT, set${TM_SELECTED_TEXT/^(.)/${1:/upcase}/}] = useState('');"
+    ],
+    "description": "useState"
+  },
+  "React Fragment Component": {
+    "prefix": "rfc",
+    "body": ["<>", "  $TM_SELECTED_TEXT", "</>"],
+    "description": "React Fragment Component"
+  },
+  "Error Location": {
+    "prefix": "errloc",
+    "body": ["err.errLocation = '$TM_FILENAME:$TM_LINE_NUMBER';"],
+    "description": "Error Location"
+  },
+  "Error Location Variable": {
+    "prefix": "errLOC",
+    "body": ["const errLocation = '$TM_FILENAME:$TM_LINE_NUMBER';"],
+    "description": "Error Location Variable"
+  },
+  "Error Body Full": {
+    "prefix": "errbd",
+    "body": [
+      "const message = '';",
+      "const errLocation = '$TM_FILENAME:$TM_LINE_NUMBER';",
+      "const errBody = { message, errLocation };"
+    ],
+    "description": "Error Body Full"
+  },
+  "React Functional Component": {
+    "prefix": "rfccc",
+    "body": [
+      "/* Classes */",
+      "import classes from './${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.module.css';",
+      "",
+      "/* Main Component */",
+      "const ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} = (props) => {",
+      "  return <div className={classes.main}>${TM_FILENAME_BASE/^(.)/${1:/upcase}/}</div>;",
+      "};",
+      "",
+      "/* Export Main Component */",
+      "export default ${TM_FILENAME_BASE/^(.)/${1:/upcase}/};",
+      ""
+    ],
+    "description": "React Functional Component"
+  },
+  "React Props": {
+    "prefix": "=P",
+    "body": ["$TM_SELECTED_TEXT={$TM_SELECTED_TEXT}"],
+    "description": "React Props"
+  },
+  "NextJs Export Default": {
+    "prefix": "nfc",
+    "body": [
+      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}() {",
+      "",
+      "}"
+    ],
+    "description": "NextJs Export Default"
+  },
+  "Element Creating Skeleton": {
+    "prefix": "ecs",
+    "body": [
+      "import classNames from 'classnames';",
+      "import { PropTypes } from 'prop-types';",
+      "import { useId } from 'react';",
+      "",
+      "const COMPONENT_NAME = '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}';",
+      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}(props) {",
+      "  const id = useId() + COMPONENT_NAME;",
+      "",
+      "  return (",
+      "    <div",
+      "      id={id}",
+      "      {...props}",
+      "      className={classNames(props.className, COMPONENT_NAME)}",
+      "    />",
+      "  );",
+      "}",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
+      "  className: PropTypes.string",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = COMPONENT_NAME;",
+      ""
+    ],
+    "description": "Element Creating Skeleton"
+  },
+  "Old Element Creating Skeleton": {
+    "prefix": "oEcs",
+    "body": [
+      "import classNames from 'classnames';",
+      "import { PropTypes } from 'prop-types';",
+      "import React from 'react';",
+      "",
+      "const COMPONENT_NAME = '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}';",
+      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}(props) {",
+      "  const id = Math.floor(Math.random() * 9999) + 1 + COMPONENT_NAME;",
+      "",
+      "  return (",
+      "    <div",
+      "      id={id}",
+      "      {...props}",
+      "      className={classNames(props.className, COMPONENT_NAME)}",
+      "    />",
+      "  );",
+      "}",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
+      "  className: PropTypes.string",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = COMPONENT_NAME;",
+      ""
+    ],
+    "description": "Element Creating Skeleton"
+  },
+  "Query Page Creating Skeleton": {
+    "prefix": "qpcs",
+    "body": [
+      "import classNames from 'classnames';",
+      "import { PropTypes } from 'prop-types';",
+      "import { useRouter } from 'next/router';",
+      "import { serverSideTranslations } from 'next-i18next/serverSideTranslations';",
+      "import { useTranslation } from 'next-i18next';",
+      "",
+      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}(props) {",
+      "  const router = useRouter();",
+      "  const { searchFor } = router.query;",
+      "  return (",
+      "  <>",
+      "    <HeadSeo",
+      "        title={t('Main.Title')}",
+      "        description={`Your description goes here on every page. ",
+      "                  Keep character count between 140 to 160 characters`}",
+      "        canonicalUrl={siteMetadata.siteUrl}",
+      "        ogTwitterImage={siteMetadata.siteLogoSquare}",
+      "        ogType={'website'}",
+      "      />",
+      "    <div className={classNames(props.className, '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}')}>",
+      "      Are you looking for {searchFor}?",
+      "    </div>",
+      "  </>",
+      "  );",
+      "}",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
+      "  className: PropTypes.string,",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}';",
+      "",
+      "export const getServerSideProps = async ({ locale }) => ({",
+      "  props: {",
+      "    ...(await serverSideTranslations(locale, ['common'])),",
+      "  },",
+      "});",
+      ""
+    ],
+    "description": "Query Page Creating Skeleton"
+  }
+}
