@@ -1,31 +1,42 @@
 {
   "env": {
     "browser": true,
-    "commonjs": true,
-    "es2021": true,
     "node": true,
-    "jest": true
+    "es2021": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended"
+    "plugin:import/warnings"
   ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 12
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "plugins": ["react"],
   "rules": {
-    "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "no-unused-vars": [
-      "warn",
-      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    "no-unused-vars": "warn",
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
     ]
   }
 }
