@@ -1,5 +1,39 @@
 {
   // Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and description.
+  "Show console logs in development mode": {
+    "prefix": "sidlog",
+    "body": [
+      " if (process.env.NODE_ENV === 'development') {",
+      "      console.log($TM_SELECTED_TEXT, '$TM_FILENAME', ':$TM_LINE_NUMBER');",
+      "    }"
+    ],
+    "description": "Show console logs in development mode"
+  },
+  "Show console logs in development mode With chalk": {
+    "prefix": "sidcha",
+    "body": [
+      " if (process.env.NODE_ENV === 'development') {",
+      "      console.log(chalk.blue($TM_SELECTED_TEXT, '$TM_FILENAME', ':$TM_LINE_NUMBER'));",
+      "    }"
+    ],
+    "description": "Show console logs in development mode With chalk"
+  },
+  "Console log": {
+    "prefix": "log",
+    "body": [
+      "      console.log($TM_SELECTED_TEXT, '$TM_FILENAME', ':$TM_LINE_NUMBER');"
+    ],
+    "description": "Console log"
+  },
+  "Show in development mode": {
+    "prefix": "sid",
+    "body": [
+      " if (process.env.NODE_ENV === 'development') {",
+      "     $TM_SELECTED_TEXT",
+      "}"
+    ],
+    "description": "Show in development mode"
+  },
   "useState": {
     "prefix": "useState",
     "body": [
@@ -48,6 +82,27 @@
     ],
     "description": "React Functional Component"
   },
+  "Pretty Log": {
+    "prefix": "plog",
+    "body": [
+      "prettyLog('error', $TM_SELECTED_TEXT, ' $TM_FILENAME:$TM_LINE_NUMBER');"
+    ],
+    "description": "Pretty Log"
+  },
+  "Pretty Log File Name": {
+    "prefix": "plf",
+    "body": [
+      "fileNameLog($TM_SELECTED_TEXT, ' $TM_FILENAME:$TM_LINE_NUMBER');"
+    ],
+    "description": "Pretty Log File Name"
+  },
+  "Pretty Log Informative": {
+    "prefix": "plf",
+    "body": [
+      "informativeLog($TM_SELECTED_TEXT, ' $TM_FILENAME:$TM_LINE_NUMBER');"
+    ],
+    "description": "Pretty Log Informative"
+  },
   "React Props": {
     "prefix": "=P",
     "body": ["$TM_SELECTED_TEXT={$TM_SELECTED_TEXT}"],
@@ -65,28 +120,35 @@
   "Element Creating Skeleton": {
     "prefix": "ecs",
     "body": [
-      "import classNames from 'classnames';",
-      "import { PropTypes } from 'prop-types';",
-      "import { useId } from 'react';",
+      "import { useId } from \"react\";",
       "",
-      "const COMPONENT_NAME = '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}';",
-      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}(props) {",
-      "  const id = useId() + COMPONENT_NAME;",
+      "import classNames from \"classnames\";",
+      "import { PropTypes } from \"prop-types\";",
+      "",
+      "const COMPONENT_NAME = \"${TM_FILENAME_BASE/^(.)/${1:/upcase}/}\";",
+      "const ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} = (props) => {",
+      "  const id = useId() + '-' + COMPONENT_NAME;",
+      "",
+      "  const { className, ...rest } = props;",
       "",
       "  return (",
-      "    <div",
-      "      id={id}",
-      "      {...props}",
-      "      className={classNames(props.className, COMPONENT_NAME)}",
-      "    />",
+      "    <div id={id} {...rest} className={classNames(className, COMPONENT_NAME)}>",
+      "      {COMPONENT_NAME}",
+      "    </div>",
       "  );",
-      "}",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.defaultProps = {",
+      "  className: \"\",",
+      "};",
       "",
       "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
-      "  className: PropTypes.string",
+      "  className: PropTypes.string,",
       "};",
       "",
       "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = COMPONENT_NAME;",
+      "",
+      "export { ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} };",
       ""
     ],
     "description": "Element Creating Skeleton"
@@ -94,31 +156,38 @@
   "Old Element Creating Skeleton": {
     "prefix": "oEcs",
     "body": [
-      "import classNames from 'classnames';",
-      "import { PropTypes } from 'prop-types';",
-      "import React from 'react';",
+      "import React from \"react\";",
       "",
-      "const COMPONENT_NAME = '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}';",
-      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}(props) {",
-      "  const id = Math.floor(Math.random() * 9999) + 1 + COMPONENT_NAME;",
+      "import classNames from \"classnames\";",
+      "import { PropTypes } from \"prop-types\";",
+      "",
+      "const COMPONENT_NAME = \"${TM_FILENAME_BASE/^(.)/${1:/upcase}/}\";",
+      "const ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} = (props) => {",
+      "  const id = Math.floor(Math.random() * 9999) + 1 + \"-\" + COMPONENT_NAME;",
+      "",
+      "  const { className, ...rest } = props;",
       "",
       "  return (",
-      "    <div",
-      "      id={id}",
-      "      {...props}",
-      "      className={classNames(props.className, COMPONENT_NAME)}",
-      "    />",
+      "    <div id={id} {...rest} className={classNames(className, COMPONENT_NAME)}>",
+      "      {COMPONENT_NAME}",
+      "    </div>",
       "  );",
-      "}",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.defaultProps = {",
+      "  className: \"\",",
+      "};",
       "",
       "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
-      "  className: PropTypes.string",
+      "  className: PropTypes.string,",
       "};",
       "",
       "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = COMPONENT_NAME;",
+      "",
+      "export { ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} };",
       ""
     ],
-    "description": "Element Creating Skeleton"
+    "description": "Old Element Creating Skeleton"
   },
   "Query Page Creating Skeleton": {
     "prefix": "qpcs",
