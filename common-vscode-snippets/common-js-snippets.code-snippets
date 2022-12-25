@@ -125,11 +125,19 @@
       "import classNames from \"classnames\";",
       "import { PropTypes } from \"prop-types\";",
       "",
+<<<<<<< HEAD
       "const COMPONENT_NAME = \"${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}\";",
       "const ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} = (props) => {",
       "  const id = useId() + '-' + COMPONENT_NAME;",
       "",
       "  const { className = '', ...rest } = props;",
+=======
+      "const COMPONENT_NAME = \"${TM_FILENAME_BASE/^(.)/${1:/upcase}/}\";",
+      "const ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} = (props) => {",
+      "  const id = useId() + '-' + COMPONENT_NAME;",
+      "",
+      "  const { className, ...rest } = props;",
+>>>>>>> a0084b14fa82fdc879c728c36676f9c1dabad0c6
       "",
       "  return (",
       "    <div id={id} {...rest} className={classNames(className, COMPONENT_NAME)}>",
@@ -137,6 +145,7 @@
       "    </div>",
       "  );",
       "};",
+<<<<<<< HEAD
       "",
       "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.propTypes = {",
       "  className: PropTypes.string,",
@@ -145,6 +154,20 @@
       "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.displayName = COMPONENT_NAME;",
       "",
       "export { ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} };",
+=======
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.defaultProps = {",
+      "  className: \"\",",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
+      "  className: PropTypes.string,",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = COMPONENT_NAME;",
+      "",
+      "export { ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} };",
+>>>>>>> a0084b14fa82fdc879c728c36676f9c1dabad0c6
       ""
     ],
     "description": "Element Creating Skeleton"
@@ -153,6 +176,7 @@
     "prefix": "oEcs",
     "body": [
       "import React from \"react\";",
+<<<<<<< HEAD
       "",
       "import classNames from \"classnames\";",
       "import { PropTypes } from \"prop-types\";",
@@ -162,6 +186,17 @@
       "  const id = Math.floor(Math.random() * 9999) + 1 + \"-\" + COMPONENT_NAME;",
       "",
       "  const { className = '', ...rest } = props;",
+=======
+      "",
+      "import classNames from \"classnames\";",
+      "import { PropTypes } from \"prop-types\";",
+      "",
+      "const COMPONENT_NAME = \"${TM_FILENAME_BASE/^(.)/${1:/upcase}/}\";",
+      "const ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} = (props) => {",
+      "  const id = Math.floor(Math.random() * 9999) + 1 + \"-\" + COMPONENT_NAME;",
+      "",
+      "  const { className, ...rest } = props;",
+>>>>>>> a0084b14fa82fdc879c728c36676f9c1dabad0c6
       "",
       "  return (",
       "    <div id={id} {...rest} className={classNames(className, COMPONENT_NAME)}>",
@@ -170,6 +205,7 @@
       "  );",
       "};",
       "",
+<<<<<<< HEAD
       "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.propTypes = {",
       "  className: PropTypes.string,",
       "};",
@@ -203,9 +239,22 @@
       "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.displayName = COMPONENT_NAME;",
       "",
       "export { ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} };",
+=======
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.defaultProps = {",
+      "  className: \"\",",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
+      "  className: PropTypes.string,",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = COMPONENT_NAME;",
+      "",
+      "export { ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} };",
+>>>>>>> a0084b14fa82fdc879c728c36676f9c1dabad0c6
       ""
     ],
-    "description": "Element Creating Skeleton"
+    "description": "Old Element Creating Skeleton"
   },
   "Query Page Creating Skeleton": {
     "prefix": "qpcs",
