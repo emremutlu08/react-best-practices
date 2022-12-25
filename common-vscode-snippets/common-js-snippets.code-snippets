@@ -1,5 +1,39 @@
 {
   // Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and description.
+  "Show console logs in development mode": {
+    "prefix": "sidlog",
+    "body": [
+      " if (process.env.NODE_ENV === 'development') {",
+      "      console.log($TM_SELECTED_TEXT, '$TM_FILENAME', ':$TM_LINE_NUMBER');",
+      "    }"
+    ],
+    "description": "Show console logs in development mode"
+  },
+  "Show console logs in development mode With chalk": {
+    "prefix": "sidcha",
+    "body": [
+      " if (process.env.NODE_ENV === 'development') {",
+      "      console.log(chalk.blue($TM_SELECTED_TEXT, '$TM_FILENAME', ':$TM_LINE_NUMBER'));",
+      "    }"
+    ],
+    "description": "Show console logs in development mode With chalk"
+  },
+  "Console log": {
+    "prefix": "log",
+    "body": [
+      "      console.log($TM_SELECTED_TEXT, '$TM_FILENAME', ':$TM_LINE_NUMBER');"
+    ],
+    "description": "Console log"
+  },
+  "Show in development mode": {
+    "prefix": "sid",
+    "body": [
+      " if (process.env.NODE_ENV === 'development') {",
+      "     $TM_SELECTED_TEXT",
+      "}"
+    ],
+    "description": "Show in development mode"
+  },
   "useState": {
     "prefix": "useState",
     "body": [
@@ -35,18 +69,39 @@
     "prefix": "rfccc",
     "body": [
       "/* Classes */",
-      "import classes from './${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.module.css';",
+      "import classes from './${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.module.css';",
       "",
       "/* Main Component */",
-      "const ${TM_FILENAME_BASE/^(.)/${1:/upcase}/} = (props) => {",
-      "  return <div className={classes.main}>${TM_FILENAME_BASE/^(.)/${1:/upcase}/}</div>;",
+      "const ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} = (props) => {",
+      "  return <div className={classes.main}>${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}</div>;",
       "};",
       "",
       "/* Export Main Component */",
-      "export default ${TM_FILENAME_BASE/^(.)/${1:/upcase}/};",
+      "export default ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g};",
       ""
     ],
     "description": "React Functional Component"
+  },
+  "Pretty Log": {
+    "prefix": "plog",
+    "body": [
+      "prettyLog('error', $TM_SELECTED_TEXT, ' $TM_FILENAME:$TM_LINE_NUMBER');"
+    ],
+    "description": "Pretty Log"
+  },
+  "Pretty Log File Name": {
+    "prefix": "plf",
+    "body": [
+      "fileNameLog($TM_SELECTED_TEXT, ' $TM_FILENAME:$TM_LINE_NUMBER');"
+    ],
+    "description": "Pretty Log File Name"
+  },
+  "Pretty Log Informative": {
+    "prefix": "plf",
+    "body": [
+      "informativeLog($TM_SELECTED_TEXT, ' $TM_FILENAME:$TM_LINE_NUMBER');"
+    ],
+    "description": "Pretty Log Informative"
   },
   "React Props": {
     "prefix": "=P",
@@ -56,7 +111,7 @@
   "NextJs Export Default": {
     "prefix": "nfc",
     "body": [
-      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}() {",
+      "export default function ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}() {",
       "",
       "}"
     ],
@@ -65,28 +120,31 @@
   "Element Creating Skeleton": {
     "prefix": "ecs",
     "body": [
-      "import classNames from 'classnames';",
-      "import { PropTypes } from 'prop-types';",
-      "import { useId } from 'react';",
+      "import { useId } from \"react\";",
       "",
-      "const COMPONENT_NAME = '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}';",
-      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}(props) {",
-      "  const id = useId() + COMPONENT_NAME;",
+      "import classNames from \"classnames\";",
+      "import { PropTypes } from \"prop-types\";",
+      "",
+      "const COMPONENT_NAME = \"${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}\";",
+      "const ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} = (props) => {",
+      "  const id = useId() + '-' + COMPONENT_NAME;",
+      "",
+      "  const { className = '', ...rest } = props;",
       "",
       "  return (",
-      "    <div",
-      "      id={id}",
-      "      {...props}",
-      "      className={classNames(props.className, COMPONENT_NAME)}",
-      "    />",
+      "    <div id={id} {...rest} className={classNames(className, COMPONENT_NAME)}>",
+      "      {COMPONENT_NAME}",
+      "    </div>",
       "  );",
-      "}",
-      "",
-      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
-      "  className: PropTypes.string",
       "};",
       "",
-      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = COMPONENT_NAME;",
+      "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.propTypes = {",
+      "  className: PropTypes.string,",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.displayName = COMPONENT_NAME;",
+      "",
+      "export { ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} };",
       ""
     ],
     "description": "Element Creating Skeleton"
@@ -94,28 +152,57 @@
   "Old Element Creating Skeleton": {
     "prefix": "oEcs",
     "body": [
-      "import classNames from 'classnames';",
-      "import { PropTypes } from 'prop-types';",
-      "import React from 'react';",
+      "import React from \"react\";",
       "",
-      "const COMPONENT_NAME = '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}';",
-      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}(props) {",
-      "  const id = Math.floor(Math.random() * 9999) + 1 + COMPONENT_NAME;",
+      "import classNames from \"classnames\";",
+      "import { PropTypes } from \"prop-types\";",
+      "",
+      "const COMPONENT_NAME = \"${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}\";",
+      "const ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} = (props) => {",
+      "  const id = Math.floor(Math.random() * 9999) + 1 + \"-\" + COMPONENT_NAME;",
+      "",
+      "  const { className = '', ...rest } = props;",
       "",
       "  return (",
-      "    <div",
-      "      id={id}",
-      "      {...props}",
-      "      className={classNames(props.className, COMPONENT_NAME)}",
-      "    />",
+      "    <div id={id} {...rest} className={classNames(className, COMPONENT_NAME)}>",
+      "      {COMPONENT_NAME}",
+      "    </div>",
       "  );",
-      "}",
-      "",
-      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
-      "  className: PropTypes.string",
       "};",
       "",
-      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = COMPONENT_NAME;",
+      "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.propTypes = {",
+      "  className: PropTypes.string,",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.displayName = COMPONENT_NAME;",
+      "",
+      "export { ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} };",
+      ""
+    ],
+    "description": "Old Element Creating Skeleton (kebab-case to PascalCase)"
+  },
+  "Nextjs Typescript Element Creating Skeleton": {
+    "prefix": "necs",
+    "body": [
+      "import { useId } from \"react\";",
+      "import classNames from \"classnames\";",
+      "",
+      "const COMPONENT_NAME = \"${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}\";",
+      "const ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} = (props: { className?: string }) => {",
+      "  const id = useId() + \"-\" + COMPONENT_NAME;",
+      "",
+      "  const { className, ...rest } = props;",
+      "",
+      "  return (",
+      "    <div id={id} {...rest} className={classNames(className, COMPONENT_NAME)}>",
+      "      {COMPONENT_NAME}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.displayName = COMPONENT_NAME;",
+      "",
+      "export { ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g} };",
       ""
     ],
     "description": "Element Creating Skeleton"
@@ -129,7 +216,7 @@
       "import { serverSideTranslations } from 'next-i18next/serverSideTranslations';",
       "import { useTranslation } from 'next-i18next';",
       "",
-      "export default function ${TM_FILENAME_BASE/^(.)/${1:/upcase}/}(props) {",
+      "export default function ${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}(props) {",
       "  const router = useRouter();",
       "  const { searchFor } = router.query;",
       "  return (",
@@ -142,18 +229,18 @@
       "        ogTwitterImage={siteMetadata.siteLogoSquare}",
       "        ogType={'website'}",
       "      />",
-      "    <div className={classNames(props.className, '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}')}>",
+      "    <div className={classNames(props.className, '${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}')}>",
       "      Are you looking for {searchFor}?",
       "    </div>",
       "  </>",
       "  );",
       "}",
       "",
-      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.propTypes = {",
+      "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.propTypes = {",
       "  className: PropTypes.string,",
       "};",
       "",
-      "${TM_FILENAME_BASE/^(.)/${1:/upcase}/}.displayName = '${TM_FILENAME_BASE/^(.)/${1:/upcase}/}';",
+      "${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}.displayName = '${TM_FILENAME_BASE/^([a-z])|([a-z]*)[-@_.*0-9]+([a-z]*)/${1:/capitalize}${2}${3:/capitalize}/g}';",
       "",
       "export const getServerSideProps = async ({ locale }) => ({",
       "  props: {",
