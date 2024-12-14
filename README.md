@@ -1,4 +1,8 @@
 # React Best Practices
 
 Hello everyone,
-I figure out there is no comprehensive document about React best practices and creating React applications. Therefore, I want to build an excellent guide with a great community.
+I discovered that there is no comprehensive document about React best practices and creating React applications. Therefore, I want to create an excellent guide with a great community.
+
+Update dependencies
+sudo npm install -g npm-check-updates
+ncu -u --target patch
