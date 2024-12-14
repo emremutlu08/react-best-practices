@@ -5,4 +5,5 @@ I discovered no comprehensive document about React best practices and creating R
 
 ## Update dependencies
 sudo npm install -g npm-check-updates
+
 ncu -u --target patch
